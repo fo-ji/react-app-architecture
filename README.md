@@ -10,3 +10,26 @@ $ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier @typescript
 $ npx husky install
 $ npx husky add .husky/pre-commit "npx lint-staged"
 ```
+
+### Project structure overview
+- components : アプリケーション全体で使用されるすべての共有コンポーネント
+- config     : アプリケーション構成ファイル
+- features   : すべての機能ベースのモジュール
+- layouts    : ページのさまざまなレイアウト
+- lib        : アプリケーションで使用されるさまざまなライブラリの構成
+- pages      : アプリケーションのページ
+- providers  : すべてのアプリケーションプロバイダー
+- stores     : アプリケーションで使用されるすべてのグローバル状態ストア
+- testing    : テスト関連のモック、ヘルパー、ユーティリティ、および構成
+- types      : アプリケーション全体で使用される基本の TypeScript 型定義
+- utils      : すべての共有ユーティリティ関数
+
+#### features example
+```sh
+.
+└── features
+    ├── api        : 特定の機能に関連する API リクエスト宣言と API フック
+    ├── components : 特定の機能に限定されたすべてのコンポーネント
+    ├── types      : 特定の機能の TypeScript タイプ定義
+    └── index.ts   : アプリケーションの他の部分に対してパブリックにする必要があるもののみをエクスポート
+```
