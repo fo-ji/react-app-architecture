@@ -33,3 +33,9 @@ $ npx husky add .husky/pre-commit "npx lint-staged"
     ├── types      : 特定の機能の TypeScript タイプ定義
     └── index.ts   : アプリケーションの他の部分に対してパブリックにする必要があるもののみをエクスポート
 ```
+
+### UI Components
+```sh
+$ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion @chakra-ui/icons
+$ yarn add react-hook-form
+```
