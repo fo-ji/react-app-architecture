@@ -39,3 +39,9 @@ $ npx husky add .husky/pre-commit "npx lint-staged"
 $ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion @chakra-ui/icons
 $ yarn add react-hook-form
 ```
+
+### Move libs
+```sh
+$ yarn remove eslint eslint-config-next typescript @types/node @types/react @types/react-dom
+$ yarn add -D eslint eslint-config-next typescript @types/node @types/react @types/react-dom
+```
