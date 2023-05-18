@@ -45,3 +45,9 @@ $ yarn add react-hook-form
 $ yarn remove eslint eslint-config-next typescript @types/node @types/react @types/react-dom
 $ yarn add -D eslint eslint-config-next typescript @types/node @types/react @types/react-dom
 ```
+
+### Storybook
+```sh
+$ npx storybook init
+$ yarn add -D @chakra-ui/storybook-addon
+```
