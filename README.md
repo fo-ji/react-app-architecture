@@ -57,3 +57,8 @@ $ yarn add -D @chakra-ui/storybook-addon
 $ yarn add -D msw @mswjs/data msw-devtools
 $ npx msw init public/ --save
 ```
+
+### API-Client
+```sh
+$ yarn add axios @tanstack/react-query @tanstack/react-query-devtools react-error-boundary
+```
