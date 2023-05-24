@@ -51,3 +51,9 @@ $ yarn add -D eslint eslint-config-next typescript @types/node @types/react @typ
 $ npx storybook init
 $ yarn add -D @chakra-ui/storybook-addon
 ```
+
+### MSW
+```sh
+$ yarn add -D msw @mswjs/data msw-devtools
+$ npx msw init public/ --save
+```
