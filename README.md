@@ -62,3 +62,8 @@ $ npx msw init public/ --save
 ```sh
 $ yarn add axios @tanstack/react-query @tanstack/react-query-devtools react-error-boundary
 ```
+
+### Store
+```sh
+$ yarn add zustand
+```
