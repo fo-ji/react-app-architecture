@@ -67,3 +67,8 @@ $ yarn add axios @tanstack/react-query @tanstack/react-query-devtools react-erro
 ```sh
 $ yarn add zustand
 ```
+
+### Test
+```sh
+$ yarn add -D jest jest-environment-jsdom @testing-library/jest-dom @testing-library/react
+```
