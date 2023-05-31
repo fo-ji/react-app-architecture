@@ -71,4 +71,6 @@ $ yarn add zustand
 ### Test
 ```sh
 $ yarn add -D jest jest-environment-jsdom @testing-library/jest-dom @testing-library/react
+$ yarn add -D cypress @testing-library/cypress start-server-and-test
+% npx cypress install
 ```

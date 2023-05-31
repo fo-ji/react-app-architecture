@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cypress
+/cypress/videos
+/cypress/screenshots
+
+# storybook
+/storybook-static

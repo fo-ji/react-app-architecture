@@ -8,6 +8,7 @@ services:
     command: yarn dev
     ports:
       - 3000:3000
+      - 3005:3005
       - 6006:6006
     volumes:
       - .:/app
