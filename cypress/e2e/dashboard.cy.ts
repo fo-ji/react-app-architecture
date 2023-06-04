@@ -9,13 +9,13 @@ describe('dashboard', () => {
     cy.clearCookies();
     cy.clearLocalStorage();
 
-    cy.visit('http://localhost:3005/dashboard/jobs');
+    cy.visit('http://localhost:3000/dashboard/jobs');
 
     cy.wait(500);
 
     cy.url().should(
       'equal',
-      'http://localhost:3005/auth/login?redirect=/dashboard/jobs'
+      'http://localhost:3000/auth/login?redirect=/dashboard/jobs'
     );
 
     cy.findByRole('textbox', {
@@ -99,7 +99,7 @@ describe('dashboard', () => {
 
     cy.url().should(
       'equal',
-      'http://localhost:3005/auth/login'
+      'http://localhost:3000/auth/login'
     );
   });
 });
