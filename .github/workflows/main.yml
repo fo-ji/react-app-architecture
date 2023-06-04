@@ -5,12 +5,14 @@ jobs:
   code-checks:
     name: Code Checks
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_API_MOCKING: ${{ secrets.NEXT_PUBLIC_API_MOCKING }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      # - run: mv .env.example .env
       - run: yarn install
       - run: yarn test
       - run: yarn lint
@@ -21,7 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # - run: mv .env.example .env
       - uses: cypress-io/github-action@v4
         with:
           build: yarn build
