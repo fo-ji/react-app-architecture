@@ -7,7 +7,7 @@ const job = testData.jobs[0];
 describe('public application flow', () => {
   it('should display the organization public page', () => {
     cy.visit(
-      `http://localhost:3000/organizations/${organization.id}`
+      `http://localhost:3005/organizations/${organization.id}`
     );
 
     cy.findByRole('heading', {
@@ -43,7 +43,7 @@ describe('public application flow', () => {
 
     cy.url().should(
       'equal',
-      `http://localhost:3000/organizations/${organization.id}/jobs/${job.id}`
+      `http://localhost:3005/organizations/${organization.id}/jobs/${job.id}`
     );
 
     cy.findByRole('heading', {
