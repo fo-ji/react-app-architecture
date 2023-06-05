@@ -6,5 +6,3 @@ WORKDIR /app
 RUN yarn install --frozen-lockfile
 
 COPY . .
-
-RUN npx cypress install
