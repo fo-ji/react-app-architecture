@@ -1,7 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { apiClient } from '@/lib/api-client';
-import { queryClient } from '@/lib/react-query';
+import {
+  queryClient,
+  queryKeys,
+} from '@/lib/react-query';
 
 import type { Job, CreateJobData } from '../types';
 
@@ -27,7 +30,7 @@ export const useCreateJob = ({
   const { mutate: submit, isLoading } = useMutation({
     mutationFn: createJob,
     onSuccess: (job) => {
-      queryClient.invalidateQueries(['jobs']);
+      queryClient.invalidateQueries(queryKeys.jobs.all);
       onSuccess?.(job);
     },
   });

@@ -5,26 +5,44 @@ import type {
 } from 'next';
 import type { ReactElement } from 'react';
 
+import { Loading } from '@/components/loading';
 import { NotFound } from '@/components/not-found';
 import { Seo } from '@/components/seo';
 import {
   JobsList,
   type Job,
   getJobs,
+  useJobs,
 } from '@/features/jobs';
 import {
   getOrganization,
   OrganizationInfo,
+  useOrganization,
 } from '@/features/organizations';
 import { PublicLayout } from '@/layouts/public-layout';
+import {
+  queryClient,
+  dehydrate,
+  queryKeys,
+} from '@/lib/react-query';
 
 type PublicOrganizationPageProps =
   InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const PublicOrganizationPage = ({
-  organization,
-  jobs,
+  organizationId,
 }: PublicOrganizationPageProps) => {
+  const { data: organization, isLoading } =
+    useOrganization({
+      organizationId,
+    });
+  const { data: jobs } = useJobs({
+    params: {
+      organizationId,
+    },
+  });
+
+  if (isLoading) return <Loading />;
   if (!organization) return <NotFound />;
 
   return (
@@ -64,20 +82,27 @@ export const getServerSideProps = async ({
   params,
 }: GetServerSidePropsContext) => {
   const organizationId = params?.organizationId as string;
-
-  const [organization, jobs] = await Promise.all([
-    getOrganization({ organizationId }).catch(() => null),
-    getJobs({
-      params: {
-        organizationId: organizationId,
-      },
-    }).catch(() => [] as Job[]),
+  await Promise.all([
+    queryClient.prefetchQuery(
+      queryKeys.organizations.one(organizationId),
+      () =>
+        getOrganization({ organizationId }).catch(
+          () => null
+        )
+    ),
+    queryClient.prefetchQuery(
+      queryKeys.jobs.many({ organizationId }),
+      () =>
+        getJobs({
+          params: { organizationId },
+        }).catch(() => [] as Job[])
+    ),
   ]);
 
   return {
     props: {
-      organization,
-      jobs,
+      dehydratedState: dehydrate(queryClient),
+      organizationId,
     },
   };
 };

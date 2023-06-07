@@ -5,6 +5,7 @@ import type { ReactElement, ReactNode } from 'react';
 
 import { API_MOCKING } from '@/config/constants';
 import { MSWWrapperProps } from '@/lib/msw';
+import { Hydrate } from '@/lib/react-query';
 import { AppProvider } from '@/providers/app';
 
 type NextPageWithLayout = NextPage & {
@@ -32,11 +33,13 @@ const App = ({
 
   return (
     <AppProvider>
-      {API_MOCKING ? (
-        <MSWWrapper>{pageContent}</MSWWrapper>
-      ) : (
-        pageContent
-      )}
+      <Hydrate state={pageProps.dewaterdState}>
+        {API_MOCKING ? (
+          <MSWWrapper>{pageContent}</MSWWrapper>
+        ) : (
+          pageContent
+        )}
+      </Hydrate>
     </AppProvider>
   );
 };
