@@ -1,7 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { apiClient } from '@/lib/api-client';
-import { queryClient } from '@/lib/react-query';
+import {
+  queryClient,
+  queryKeys,
+} from '@/lib/react-query';
 
 import type { AuthUser, LoginData } from '../types';
 
@@ -23,7 +26,10 @@ export const useLogin = ({
   const { mutate: submit, isLoading } = useMutation({
     mutationFn: login,
     onSuccess: ({ user }) => {
-      queryClient.setQueryData(['auth-user'], user);
+      queryClient.setQueryData(
+        queryKeys.auth.authUser,
+        user
+      );
       onSuccess?.(user);
     },
   });

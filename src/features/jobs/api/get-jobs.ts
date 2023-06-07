@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { apiClient } from '@/lib/api-client';
+import { queryKeys } from '@/lib/react-query';
 
 import type { Job } from '../types';
 
@@ -20,7 +21,7 @@ export const getJobs = ({
 
 export const useJobs = ({ params }: GetJobsOptions) => {
   const { data, isFetching, isFetched } = useQuery({
-    queryKey: ['jobs', params],
+    queryKey: queryKeys.jobs.many(params),
     queryFn: () => getJobs({ params }),
     enabled: !!params.organizationId,
     initialData: [],

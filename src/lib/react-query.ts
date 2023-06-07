@@ -1,6 +1,10 @@
-import { QueryClient } from '@tanstack/react-query';
+import {
+  QueryClient,
+  Hydrate,
+  dehydrate,
+} from '@tanstack/react-query';
 
-export const queryClient = new QueryClient({
+const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
@@ -9,3 +13,26 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+const getQueryKeys = (baseKey: string) => {
+  return {
+    all: [baseKey],
+    many: (params: Record<string, unknown>) => [
+      baseKey,
+      params,
+    ],
+    one: (id: string) => [baseKey, id],
+  };
+};
+
+const queryKeys = {
+  auth: {
+    authUser: ['auth-user'],
+  },
+  jobs: getQueryKeys('jobs'),
+  organizations: {
+    one: getQueryKeys('organizations').one,
+  },
+};
+
+export { queryClient, Hydrate, dehydrate, queryKeys };
